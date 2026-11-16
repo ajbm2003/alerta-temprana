@@ -3,5 +3,6 @@ builder = "DOCKERFILE"
 dockerfilePath = "docker/Dockerfile.api"
 
 [deploy]
-startCommand = "uvicorn src.api.main:app --host 0.0.0.0 --port $PORT"
+# Docker usa exec: la shell expande el puerto asignado por Railway.
+startCommand = "/bin/sh -c \"exec uvicorn src.api.main:app --host 0.0.0.0 --port ${PORT:-8000}\""
 restartPolicyType = "ON_FAILURE"

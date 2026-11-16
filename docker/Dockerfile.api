@@ -13,4 +13,5 @@ COPY scripts/ scripts/
 RUN mkdir -p models
 
 EXPOSE 8000
-CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Respeta PORT en Railway y usa 8000 al ejecutar el contenedor localmente.
+CMD ["/bin/sh", "-c", "exec uvicorn src.api.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

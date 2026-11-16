@@ -81,10 +81,11 @@ def cargar_paquete(ruta_modelo: str | Path | None = None) -> dict:
             from huggingface_hub import hf_hub_download
 
             ruta = hf_hub_download(
-                repo_id=os.environ["HF_MODEL_REPO"],
+                # Al pegar variables en Railway pueden quedar espacios o saltos finales.
+                repo_id=os.environ["HF_MODEL_REPO"].strip(),
                 filename="modelo_final.joblib",
                 repo_type="model",
-                token=os.environ.get("HF_TOKEN"),
+                token=(os.environ.get("HF_TOKEN") or "").strip() or None,
             )
         else:
             ruta = PROJECT_ROOT / "models/modelo_final.joblib"

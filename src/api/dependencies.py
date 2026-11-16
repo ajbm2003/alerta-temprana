@@ -32,9 +32,16 @@ def get_paquete():
             "Modelo no disponible: causa=%s; HTTP=%s; modulo=%s",
             type(causa).__name__, getattr(respuesta, "status_code", None), modulo,
         )
+        # El diagnóstico público incluye solo códigos, nunca tokens ni mensajes internos.
+        diagnostico = {"X-Model-Error": type(causa).__name__}
+        if respuesta is not None:
+            diagnostico["X-Model-Upstream-Status"] = str(respuesta.status_code)
+        if modulo:
+            diagnostico["X-Model-Missing-Module"] = modulo
         raise HTTPException(
             status_code=503,
             detail="Modelo no disponible. Revisá la ruta local o el repositorio configurado.",
+            headers=diagnostico,
         ) from exc
 
 

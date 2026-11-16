@@ -1,0 +1,22 @@
+random_seed: 42
+
+target:
+  ventana_anios: 2            # abandono = sin actividad en t+1 y t+2
+  censurar_hasta: 2025        # observaciones con ventana incompleta se excluyen
+
+split:
+  method: group_kfold
+  group_col: id_alumno        # NUNCA mezclar anos de un mismo estudiante
+  n_splits: 5
+
+modelos:
+  baseline: logistic_regression
+  principal: logistic_regression  # candidata final con tres recuentos adicionales
+
+db:
+  tablas:
+    estudiantes: estudiantes
+    historico: historico_anual
+    predicciones: predicciones
+    metricas: metricas_modelo
+    drift: drift

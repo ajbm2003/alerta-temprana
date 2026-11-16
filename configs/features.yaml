@@ -1,0 +1,21 @@
+# Diccionario de features y justificacion anti-leakage.
+# Regla: una feature calculada en el ano t solo puede usar informacion de anos <= t.
+features:
+  - nombre: tasa_aprobacion_asignaturas
+    descripcion: proporcion de aprobadas sobre cursadas en el ano t
+    leakage: sin riesgo, usa solo ano t
+  - nombre: delta_tasa_aprobacion
+    descripcion: variacion de tasa_aprobacion vs ano t-1
+    leakage: sin riesgo, usa t y t-1
+  - nombre: brecha_cursado_carrera
+    descripcion: porcentaje_avance_cursado - porcentaje_avance_carrera en t
+    leakage: sin riesgo, acumulados oficiales al cierre de t
+  - nombre: ritmo_vs_plan
+    descripcion: porcentaje_avance_carrera / (antiguedad_carrera / 4)
+    leakage: sin riesgo, ambos valores conocidos al cierre de t
+  - nombre: anios_sin_finales
+    descripcion: anos consecutivos sin aprobar finales hasta t
+    leakage: sin riesgo, construido con historia <= t
+excluir_raw:
+  - id_alumno
+  - anio_academico

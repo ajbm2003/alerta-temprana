@@ -1,0 +1,58 @@
+{
+  "modo": "demo_local_base_temporal",
+  "modelo_version": "logistica-recuentos-v1",
+  "anio_corte": 2025,
+  "carga": {
+    "anio_corte": 2025,
+    "estudiantes": 1364,
+    "historico_anual": 3268,
+    "metricas_modelo": 2
+  },
+  "filas_tablas": {
+    "estudiantes": 1364,
+    "historico_anual": 3268,
+    "predicciones": 663,
+    "metricas_modelo": 2,
+    "drift": 0
+  },
+  "registros_comparados_con_notebook": 663,
+  "diferencia_maxima_batch_notebook": 9.942133921692076e-17,
+  "repeticion_batch_sin_duplicados": true,
+  "batch_sin_token_http": 401,
+  "predict_http": 200,
+  "prediccion_api": {
+    "id_alumno": 1312,
+    "anio_base": 2025,
+    "probabilidad_abandono": 0.853091,
+    "banda_riesgo": "alto",
+    "modelo_version": "logistica-recuentos-v1",
+    "bandas_validadas": false,
+    "umbral_referencia": 0.5,
+    "factores_principales": [
+      "tasa_aprobacion_asignaturas: aumenta el riesgo estimado",
+      "porcentaje_avance_cursado: aumenta el riesgo estimado",
+      "porcentaje_avance_carrera: aumenta el riesgo estimado"
+    ],
+    "factores_detalle": [
+      {
+        "feature": "tasa_aprobacion_asignaturas",
+        "valor_usado": 0.0,
+        "contribucion_log_odds": 0.9907117402390307,
+        "efecto": "aumenta"
+      },
+      {
+        "feature": "porcentaje_avance_cursado",
+        "valor_usado": 0.0,
+        "contribucion_log_odds": 0.6358797934666726,
+        "efecto": "aumenta"
+      },
+      {
+        "feature": "porcentaje_avance_carrera",
+        "valor_usado": 0.0,
+        "contribucion_log_odds": 0.6103505305070362,
+        "efecto": "aumenta"
+      }
+    ],
+    "valor_base_log_odds": -1.2636938498765904
+  }
+}

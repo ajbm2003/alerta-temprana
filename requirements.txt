@@ -1,0 +1,30 @@
+# Versiones del pipeline guardado: mantenerlas también en Railway.
+pandas==2.3.3
+numpy==2.4.3
+scipy==1.18.1
+scikit-learn==1.9.1
+joblib==1.6.0
+
+# Lectura de los datos y configuración del proyecto.
+PyYAML>=6,<7
+pyarrow
+openpyxl
+python-dotenv
+
+# API y base de datos.
+fastapi>=0.115,<1
+uvicorn[standard]
+pydantic>=2,<3
+sqlalchemy>=2,<3
+psycopg2-binary>=2.9,<3
+huggingface_hub>=0.27,<3
+
+# Herramientas conservadas para notebooks y monitoreo.
+lightgbm>=4,<5
+shap
+evidently
+mlflow
+
+# Verificación local/CI.
+pytest
+httpx

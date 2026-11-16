@@ -45,7 +45,10 @@ trayectoria real anonimizada para repetir POST /predict.
 
 Abrir http://127.0.0.1:8000/docs. También se puede enviar el ejemplo:
 
-    curl --fail-with-body -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" --data-binary @reports/ejemplo_predict.json
+    curl --fail-with-body -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" --data-binary @reports/ejemplo_predict_2026.json
+
+El ejemplo operativo usa un historial real anonimizado hasta 2026.
+reports/ejemplo_predict.json conserva el ejemplo de la demo histórica de 2025.
 
 /predict recibe id_alumno, anio_corte y la historia anual completa.
 Acepta anio como alias de anio_academico. Ordena la historia, excluye años
@@ -84,8 +87,18 @@ Si existen duplicados antiguos que impidan el índice único, la carga falla
 sin borrarlos: hay que revisarlos antes de continuar.
 
 SCORING_YEAR indica el año académico completo que se quiere puntuar.
-Por defecto se utiliza el cierre conocido del paquete/configuración, 2025.
-Cambiarlo para datos nuevos completos no requiere ejecutar train.py cada día.
+La configuración operativa actual es SCORING_YEAR=2026 en .env y en las
+variables del servicio de la API en Railway. Cargar primero el historial
+con scripts/cargar_datos.py y luego ejecutar scripts/predict_batch.py.
+Con el Excel actual se esperan 697 estudiantes con observación en 2026.
+Las predicciones de 2025 se conservan; en Power BI filtrar anio_base=2026
+para consultar el corte actual. Si los datos de 2026 son parciales, las
+predicciones deben interpretarse como una prueba con información incompleta.
+
+El cierre de seguimiento del entrenamiento sigue en 2025 y no se cambia
+para puntuar otro año. Sin SCORING_YEAR, el código utiliza ese cierre del
+paquete/configuración. La demo del notebook 11 conserva su corte 2025 para
+comprobar los resultados históricos. No hace falta reentrenar para puntuar 2026.
 
 ## Cron mediante la API
 

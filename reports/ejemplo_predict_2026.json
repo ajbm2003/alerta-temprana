@@ -1,0 +1,22 @@
+{
+  "id_alumno": 154,
+  "anio_corte": 2026,
+  "historia": [
+    {
+      "anio_academico": 2026,
+      "edad": 47.0,
+      "antiguedad_carrera": 12,
+      "asignaturas_cursadas": 0,
+      "asignaturas_aprobadas": 0,
+      "inscripciones_finales": 0,
+      "finales_aprobados": 0,
+      "tasa_aprobacion_asignaturas": 0.0,
+      "tasa_desaprobacion_asignaturas": 0.0,
+      "tasa_ausencias_finales": 0.0,
+      "porcentaje_avance_carrera": 0.0,
+      "porcentaje_avance_cursado": 0.0,
+      "cantidad_pausas": 0,
+      "maxima_duracion_pausa": 0
+    }
+  ]
+}

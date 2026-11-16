@@ -24,7 +24,14 @@ def get_paquete():
     try:
         return cargar_paquete()
     except ModeloNoDisponible as exc:
-        logger.warning("El paquete de modelo no está disponible: %s", exc)
+        # Registra la causa sin volcar mensajes que puedan contener credenciales.
+        causa = exc.__cause__ or exc
+        respuesta = getattr(causa, "response", None)
+        modulo = causa.name if isinstance(causa, ModuleNotFoundError) else None
+        logger.warning(
+            "Modelo no disponible: causa=%s; HTTP=%s; modulo=%s",
+            type(causa).__name__, getattr(respuesta, "status_code", None), modulo,
+        )
         raise HTTPException(
             status_code=503,
             detail="Modelo no disponible. Revisá la ruta local o el repositorio configurado.",
